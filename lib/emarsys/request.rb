@@ -40,6 +40,11 @@ module Emarsys
     end
 
     def emarsys_uri
+      if @path.include?('?')
+        @path = "#{@path}&live=true"
+      else
+        @path = "#{@path}?live=true"
+      end
       [client.endpoint, @path].join('/')
     end
 
